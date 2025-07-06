@@ -9,20 +9,20 @@
 </head>
 <body>
     <header style="position: fixed; top: 0; padding: 0px 299px 0 268px;">
-        <h1>Your Contribution Can Build  Something Incrediable</h1>
+        <h1>Your Contribution Can Build Something Incredible</h1>
         <p>Your Input. Our Innovation. One Perfect Website.</p>
     </header>
 
     <main>
         <section class="concept-description">
-            <h2>The Concepts We Belive In: [Briefly Describe Your Concept Here]</h2>
-            <p>Imagine a Site  Built to Do Exactly What You Need [mention key problem it solves or unique feature]. We're Confident it can [mention benefit to the user].</p>
+            <h2>The Concepts We Believe In: [Briefly Describe Your Concept Here]</h2>
+            <p>Imagine a Site Built to Do Exactly What You Need [mention key problem it solves or unique feature]. We're Confident it can [mention benefit to the user].</p>
             <p>We're passionate about creating a platform that truly serves your needs. To do that, we need to hear from you!</p>
         </section>
 
         <section class="feedback-form-section">
             <h2>Exactly What You Need?</h2>
-            <p>what would make this website truly useful  for you? We'd love your feedback. What problems would you want it to solve for you?</p>
+            <p>What would make this website truly useful for you? We'd love your feedback. What problems would you want it to solve for you?</p>
             <form id="feedbackForm" action="submit_feedback.php" method="POST">
                 <div class="form-group">
                     <label for="feedback">Your Ideas:</label>
@@ -42,7 +42,43 @@
         <p>&copy; 2025 <i>LAVIX<sub>web</sub></i>/Your Suggestions</p>
     </footer>
 
-    <<script src="script.js"></script>
-    
+    <script>
+        const form = document.getElementById('feedbackForm');
+        const message = document.getElementById('formMessage');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const feedback = document.getElementById('feedback').value;
+            const email = document.getElementById('email').value;
+
+            // You must replace this with your actual Google Apps Script URL
+            const scriptURL = "https://script.google.com/macros/s/AKfycbz_FcqItn43Yym5I4HphDhGjC7qtSJ0L5M-Slgz0s9MpevVLtW7XyH4yk7fJZIAy0aA/exec";
+
+            try {
+                const response = await fetch(scriptURL, {
+                    method: "POST",
+                    // The 'Content-Type' header is important for Google Apps Script to parse the JSON body correctly.
+                    headers: { "Content-Type": "application/json" },
+                    // Stringify the data to send it as a JSON payload.
+                    body: JSON.stringify({ feedback, email })
+                });
+
+                if (response.ok) {
+                    message.textContent = "✅ Thank you! Your feedback has been submitted.";
+                    message.classList.remove("hidden"); // Make the message visible
+                    form.reset(); // Clear the form fields
+                } else {
+                    // If the response is not OK, throw an error
+                    throw new Error(`Submission failed with status: ${response.status}`);
+                }
+            } catch (err) {
+                console.error("Error during form submission:", err);
+                message.textContent = `❌ Error submitting feedback. Please try again. Details: ${err.message}`;
+                message.classList.remove("hidden"); // Make the error message visible
+            }
+        });
+    </script>
+
 </body>
 </html>
