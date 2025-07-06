@@ -1,31 +1,33 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const feedbackForm = document.getElementById('feedbackForm');
-    const formMessage = document.getElementById('formMessage');
+<script>
+const form = document.getElementById('feedbackForm');
+const message = document.getElementById('formMessage');
 
-    feedbackForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-        const feedbackText = document.getElementById('feedback').value;
-        const emailInput = document.getElementById('email').value;
+  const feedback = document.getElementById('feedback').value;
+  const email = document.getElementById('email').value;
 
-        // In a real application, you would send this data to a server.
-        // For now, we'll just log it to the console and show a message.
+  const scriptURL = "YOUR_GOOGLE_SCRIPT_WEB_APP_URL";  // ← paste your script URL here
 
-        console.log('--- New Feedback Submission ---');
-        console.log('Feedback:', feedbackText);
-        console.log('Email:', emailInput || 'Not provided');
-        console.log('-----------------------------');
-
-        // You can integrate with a service here, e.g., Google Forms, Formspree, or a custom backend.
-        // For a quick start without a backend, consider services that collect form data.
-
-        // Simulate success:
-        feedbackForm.reset(); // Clear the form fields
-        formMessage.classList.remove('hidden'); // Show the thank you message
-
-        // Optionally hide the message after a few seconds
-        setTimeout(() => {
-            formMessage.classList.add('hidden');
-        }, 5000); // Hide after 5 seconds
+  try {
+    const response = await fetch(scriptURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ feedback, email })
     });
+
+    if (response.ok) {
+      message.textContent = "✅ Thank you! Your feedback has been submitted.";
+      message.classList.remove("hidden");
+      form.reset();
+    } else {
+      throw new Error("Submission failed.");
+    }
+  } catch (err) {
+    console.error(err);
+    message.textContent = "❌ Error submitting feedback. Please try again.";
+    message.classList.remove("hidden");
+  }
 });
+</script>
