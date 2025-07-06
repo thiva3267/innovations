@@ -42,45 +42,7 @@
         <p>&copy; 2025 <i>LAVIX<sub>web</sub></i>/Your Suggestions</p>
     </footer>
 
-    <!-- <script src="script.js"></script> -->
+    <<script src="script.js"></script>
     
-        <!-- JavaScript to handle GitHub API integration -->
-<script>
-const form = document.getElementById('feedbackForm');
-const message = document.getElementById('formMessage');
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  const feedback = document.getElementById('feedback').value;
-  const email = document.getElementById('email').value;
-
-  const formData = new FormData();
-  formData.append("feedback", feedback);
-  formData.append("email", email);
-
-  const scriptURL = "https://script.google.com/macros/s/AKfycbz_FcqItn43Yym5I4HphDhGjC7qtSJ0L5M-Slgz0s9MpevVLtW7XyH4yk7fJZIAy0aA/exec";
-
-  try {
-    const response = await fetch(scriptURL, {
-      method: "POST",
-      body: formData
-    });
-
-    if (response.ok) {
-      message.textContent = "✅ Thank you! Your feedback has been submitted.";
-      message.classList.remove("hidden");
-      form.reset();
-    } else {
-      throw new Error("Submission failed.");
-    }
-  } catch (err) {
-    console.error(err);
-    message.textContent = "❌ Error submitting feedback. Please try again.";
-    message.classList.remove("hidden");
-  }
-});
-</script>
-
 </body>
 </html>
