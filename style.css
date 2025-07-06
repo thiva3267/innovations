@@ -35,6 +35,13 @@ main {
 	margin: 112px 0 0 212px;
 }
 
+/* 📱 Mobile View - Android style with waves */
+@media only screen and (max-width: 768px) {
+    body {
+        background: linear-gradient(to bottom, #6C63FF 40%, #FEECE2 100%);
+        color: #222;
+    }
+
 section {
     margin-bottom: 30px;
 }
