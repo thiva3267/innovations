@@ -45,69 +45,38 @@
     <!-- <script src="script.js"></script> -->
     
         <!-- JavaScript to handle GitHub API integration -->
-  <script>
-    const form = document.getElementById('feedbackForm');
-    const message = document.getElementById('formMessage');
+<script>
+const form = document.getElementById('feedbackForm');
+const message = document.getElementById('formMessage');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-      const feedback = document.getElementById('feedback').value;
-      const email = document.getElementById('email').value;
+  const feedback = document.getElementById('feedback').value;
+  const email = document.getElementById('email').value;
 
-      const newReview = {
-        feedback,
-        email,
-        date: new Date().toISOString()
-      };
-
-      // GitHub repo details
-      const repo = "innovations";            // 🟡 CHANGE THIS
-      const owner = "thiva3267";     // 🟡 CHANGE THIS
-      const filePath = "data/reviews.json";
-      const token = "thiva3267-patch-1";  // 🛑 NEVER expose this in production
-
-      const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
-
-      try {
-        // Get current file
-        const getRes = await fetch(apiUrl, {
-          headers: { Authorization: `token ${token}` }
-        });
-        const file = await getRes.json();
-        const existingContent = JSON.parse(atob(file.content));
-
-        // Add new review
-        existingContent.push(newReview);
-        const updatedContent = btoa(JSON.stringify(existingContent, null, 2));
-
-        // Commit updated file
-        const updateRes = await fetch(apiUrl, {
-          method: "PUT",
-          headers: {
-            Authorization: `token ${token}`,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            message: `Add feedback from ${email}`,
-            content: updatedContent,
-            sha: file.sha
-          })
-        });
-
-        if (updateRes.ok) {
-          message.textContent = "✅ Thank you! Your feedback has been submitted.";
-          message.classList.remove("hidden");
-          form.reset();
-        } else {
-          throw new Error("GitHub update failed.");
-        }
-      } catch (error) {
-        message.textContent = "❌ Error submitting feedback. Please try again.";
-        message.classList.remove("hidden");
-        console.error(error);
-      }
+  const scriptURL = "https://script.google.com/macros/s/AKfycbz_FcqItn43Yym5I4HphDhGjC7qtSJ0L5M-Slgz0s9MpevVLtW7XyH4yk7fJZIAy0aA/exec";
+  try {
+    const response = await fetch(scriptURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ feedback, email })
     });
-    </script>
+
+    if (response.ok) {
+      message.textContent = "✅ Thank you! Your feedback has been submitted.";
+      message.classList.remove("hidden");
+      form.reset();
+    } else {
+      throw new Error("Submission failed.");
+    }
+  } catch (err) {
+    console.error(err);
+    message.textContent = "❌ Error submitting feedback. Please try again.";
+    message.classList.remove("hidden");
+  }
+});
+</script>
+
 </body>
 </html>
