@@ -8,8 +8,7 @@ form.addEventListener('submit', async (e) => {
   const feedback = document.getElementById('feedback').value;
   const email = document.getElementById('email').value;
 
-  const scriptURL = "YOUR_GOOGLE_SCRIPT_WEB_APP_URL";  // ← paste your script URL here
-
+  const scriptURL = "https://script.google.com/macros/s/AKfycbz_FcqItn43Yym5I4HphDhGjC7qtSJ0L5M-Slgz0s9MpevVLtW7XyH4yk7fJZIAy0aA/exec";
   try {
     const response = await fetch(scriptURL, {
       method: "POST",
