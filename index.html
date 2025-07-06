@@ -65,7 +65,7 @@
       const repo = "innovations";            // 🟡 CHANGE THIS
       const owner = "thiva3267";     // 🟡 CHANGE THIS
       const filePath = "data/reviews.json";
-      const token = "ghp_yourGitHubTokenHere";  // 🛑 NEVER expose this in production
+      const token = "process.env.GITHUB_Token";  // 🛑 NEVER expose this in production
 
       const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
 
