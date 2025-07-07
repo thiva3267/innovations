@@ -1,4 +1,5 @@
 <script>
+    
     const form = document.getElementById('feedbackForm');
     const message = document.getElementById('formMessage');
 
@@ -17,8 +18,8 @@
             return;
         }
 
-        // Your actual deployed Google Apps Script URL:
-        const scriptURL = "https://script.google.com/macros/s/AKfycbxZUj2QHy_j6NgUggUXCtF0GSUIBvv5IudxEsclqjly/dev";
+        
+        const scriptURL = "https://script.google.com/macros/s/AKfycbwJ6f4zU55UVRXLPPbmW4oPxEQUv5fgi2qXnDFROba9ZoZ9AGUmUQmr1R3Gut_evTLEYQ/exec";
 
         try {
             // Disable the form while submitting
