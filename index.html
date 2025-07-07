@@ -44,5 +44,33 @@
 
     <script>src="script.js"</script>
 
+    <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwJ6f4zU55UVRXLPPbmW4oPxEQUv5fgi2qXnDFROba9ZoZ9AGUmUQmr1R3Gut_evTLEYQ/exec';
+  const form = document.getElementById('feedbackForm');
+  const message = document.getElementById('message');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const data = {
+      email: document.getElementById('email').value,
+      feedback: document.getElementById('feedback').value
+    };
+
+    fetch(scriptURL, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      message.innerText = 'Feedback submitted successfully!';
+      form.reset();
+    })
+    .catch(error => {
+      message.innerText = 'Error submitting feedback.';
+      console.error('Error!', error.message);
+    });
+  });
+</script>
+
 </body>
 </html>
