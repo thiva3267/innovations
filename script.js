@@ -8,7 +8,7 @@ form.addEventListener('submit', async (e) => {
   const feedback = document.getElementById('feedback').value;
   const email = document.getElementById('email').value;
 
-  const scriptURL = "https://script.google.com/macros/s/AKfycbz_FcqItn43Yym5I4HphDhGjC7qtSJ0L5M-Slgz0s9MpevVLtW7XyH4yk7fJZIAy0aA/exec";
+  const scriptURL = "https://script.google.com/macros/s/AKfycbwJ6f4zU55UVRXLPPbmW4oPxEQUv5fgi2qXnDFROba9ZoZ9AGUmUQmr1R3Gut_evTLEYQ/exec";
   try {
     const response = await fetch(scriptURL, {
       method: "POST",
