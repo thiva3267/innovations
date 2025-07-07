@@ -42,43 +42,7 @@
         <p>&copy; 2025 <i>LAVIX<sub>web</sub></i>/Your Suggestions</p>
     </footer>
 
-    <script>
-        const form = document.getElementById('feedbackForm');
-        const message = document.getElementById('formMessage');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const feedback = document.getElementById('feedback').value;
-            const email = document.getElementById('email').value;
-
-            // You must replace this with your actual Google Apps Script URL
-            const scriptURL = "https://script.google.com/macros/s/AKfycbwJ6f4zU55UVRXLPPbmW4oPxEQUv5fgi2qXnDFROba9ZoZ9AGUmUQmr1R3Gut_evTLEYQ/exec";
-
-            try {
-                const response = await fetch(scriptURL, {
-                    method: "POST",
-                    // The 'Content-Type' header is important for Google Apps Script to parse the JSON body correctly.
-                    headers: { "Content-Type": "application/json" },
-                    // Stringify the data to send it as a JSON payload.
-                    body: JSON.stringify({ feedback, email })
-                });
-
-                if (response.ok) {
-                    message.textContent = "✅ Thank you! Your feedback has been submitted.";
-                    message.classList.remove("hidden"); // Make the message visible
-                    form.reset(); // Clear the form fields
-                } else {
-                    // If the response is not OK, throw an error
-                    throw new Error(`Submission failed with status: ${response.status}`);
-                }
-            } catch (err) {
-                console.error("Error during form submission:", err);
-                message.textContent = `❌ Error submitting feedback. Please try again. Details: ${err.message}`;
-                message.classList.remove("hidden"); // Make the error message visible
-            }
-        });
-    </script>
+    <script>src="script.js"</script>
 
 </body>
 </html>
