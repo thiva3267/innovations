@@ -1,34 +1,14 @@
 <?php
-// Database connection settings
-$host = "localhost";
-$dbname = "your_database_name";
-$username = "your_db_username";
-$password = "your_db_password";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $feedback = $_POST['feedback'];
 
-// Create DB connection
-$conn = new mysqli($host, $username, $password, $dbname);
+    // Save to file (or database/email)
+    $data = "Email: $email\nFeedback: $feedback\n\n";
+    file_put_contents("feedbacks.txt", $data, FILE_APPEND);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    // Redirect to avoid form resubmission
+    header("Location: thankyou.html");
+    exit;
 }
-
-// Get form data
-$feedback = $_POST['feedback'];
-$email = $_POST['email'];
-
-// Sanitize inputs
-$feedback = $conn->real_escape_string($feedback);
-$email = $conn->real_escape_string($email);
-
-// Insert into database
-$sql = "INSERT INTO feedback (feedback_text, email) VALUES ('$feedback', '$email')";
-
-if ($conn->query($sql) === TRUE) {
-    echo "Feedback submitted successfully!";
-} else {
-    echo "Error: " . $conn->error;
-}
-
-$conn->close();
 ?>
