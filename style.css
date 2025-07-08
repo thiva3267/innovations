@@ -11,7 +11,7 @@ header {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 60px 20px; /* Adjusted padding to ensure content isn't hidden under the header */
+    padding: 60px -2px; /* Adjusted padding to ensure content isn't hidden under the header */
     position: fixed; /* Keep header fixed */
     top: 0;
     left: 0;
