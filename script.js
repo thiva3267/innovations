@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const formData = new FormData(form);
 
-    const scriptURL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec'; // replace with your actual URL
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwJ6f4zU55UVRXLPPbmW4oPxEQUv5fgi2qXnDFROba9ZoZ9AGUmUQmr1R3Gut_evTLEYQ/exec'; // replace with your actual URL
 
     fetch(scriptURL, {
       method: 'POST',
