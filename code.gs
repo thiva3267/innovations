@@ -68,7 +68,6 @@ function createJsonResponse(status, message) {
   output.setMimeType(ContentService.MimeType.JSON);
   return output;
 }
-
 /**
  * doGet function: Handles GET requests.
  * Optional: You can remove this if you only expect POST requests.
