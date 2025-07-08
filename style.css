@@ -211,4 +211,12 @@ footer {
   color: red;
   display: block;
 }
-
+.success {
+  color: green;
+}
+.error {
+  color: red;
+}
+.hidden {
+  display: none;
+}
