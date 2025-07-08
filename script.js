@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Your Google Apps Script Web App URL
     // IMPORTANT: Replace this with your actual deployed Google Apps Script URL
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwJ6f4zU55UVRXLPPbmW4oPxEQUv5fgi2qXnDFROba9ZoZ9AGUmUQmr1R3Gut_evTLEYQ/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzl0sfYD-qL97TsiLa3jPtbxUTT1U3TQsDYwDHrIYGBmaDc-nvxd-3qY113HBIxl85mhA/exec';
 
     form.addEventListener('submit', function (e) {
         e.preventDefault(); // Prevent the default form submission
