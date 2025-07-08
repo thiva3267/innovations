@@ -196,5 +196,19 @@ footer {
     color: #777;
     font-size: 0.9rem;
 }
+#formMessage {
+  margin-top: 1rem;
+  font-weight: bold;
+  display: none;
+}
 
-  
+#formMessage.success {
+  color: green;
+  display: block;
+}
+
+#formMessage.error {
+  color: red;
+  display: block;
+}
+
