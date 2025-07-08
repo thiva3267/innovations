@@ -2,29 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>New Concept Website Feedback</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header style="position: fixed; top: 0; padding: 0px 299px 0 268px;">
+    <header>
         <h1>Your Contribution Can Build Something Incredible</h1>
         <p>Your Input. Our Innovation. One Perfect Website.</p>
     </header>
 
     <main>
         <section class="concept-description">
-            <h2>The Concepts We Believe In: [Briefly Describe Your Concept Here]</h2>
-            <p>Imagine a Site Built to Do Exactly What You Need [mention key problem it solves or unique feature]. We're Confident it can [mention benefit to the user].</p>
+            <h2>The Concepts We Believe In: A User-Centric Platform</h2>
+            <p>Imagine a site built to do exactly what **you** need. We're confident it can **streamline your daily tasks and enhance your productivity**.</p>
             <p>We're passionate about creating a platform that truly serves your needs. To do that, we need to hear from you!</p>
         </section>
 
         <section class="feedback-form-section">
             <h2>Exactly What You Need?</h2>
             <p>What would make this website truly useful for you? We'd love your feedback. What problems would you want it to solve for you?</p>
-            <p id="formMessage" class="hidden"></p>
-            <form id="feedbackForm" action="submit_feedback.php" method="POST">
+            <form id="feedbackForm">
                 <div class="form-group">
                     <label for="feedback">Your Ideas:</label>
                     <textarea id="feedback" name="feedback" rows="8" placeholder="Tell us what you'd like to see, what problems you face, or what features are important to you..." required></textarea>
@@ -35,7 +34,7 @@
                 </div>
                 <button type="submit">Submit Feedback</button>
             </form>
-            <p id="formMessage" class="hidden">I appreciate you taking the time to share your ideas!</p>
+            <p id="formMessage" class="hidden" aria-live="polite"></p>
         </section>
     </main>
 
@@ -43,35 +42,7 @@
         <p>&copy; 2025 <i>LAVIX<sub>web</sub></i>/Your Suggestions</p>
     </footer>
 
-  <!--  <script>src="script.js"</script> -->
-
-    <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwJ6f4zU55UVRXLPPbmW4oPxEQUv5fgi2qXnDFROba9ZoZ9AGUmUQmr1R3Gut_evTLEYQ/exec';
-  const form = document.getElementById('feedbackForm');
-  const message = document.getElementById('message');
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-
-    const data = {
-      email: document.getElementById('email').value,
-      feedback: document.getElementById('feedback').value
-    };
-
-    fetch(scriptURL, {
-      method: 'POST',
-      body: JSON.stringify(data)
-    })
-    .then(response => {
-      message.innerText = 'Feedback submitted successfully!';
-      form.reset();
-    })
-    .catch(error => {
-      message.innerText = 'Error submitting feedback.';
-      console.error('Error!', error.message);
-    });
-  });
-</script>
+    <script src="script.js" defer></script>
 
 </body>
 </html>
